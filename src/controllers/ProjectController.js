@@ -25,7 +25,7 @@ router.get('/id/:id', async (req, res) => {
 })
 
 router.get('/name/:name', async (req, res) => {
-	const project = await Project.findOne({ name: req.params.name }, (err, project) => {
+	const project = await Project.find({ name: req.params.name }, (err, project) => {
 		if (err) {
 			return res.status(500).send({ error: "Project not found" })
 		}
