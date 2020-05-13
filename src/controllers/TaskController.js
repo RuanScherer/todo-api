@@ -4,6 +4,16 @@ const Task = require('./../models/task')
 
 const router = express.Router()
 
+router.get('/all', async (req, res) => {
+	try {
+		const tasks = await Task.find({})
+		return res.send({ tasks })
+	}
+	catch (err) {
+		return res.status(500).send({ err : "Request failed" })
+	}
+})
+
 router.post('/register', (req, res) => {
 	Project.findOne({ _id: req.body.project_id }, async (err, project) => {
 		if (err) {
@@ -13,9 +23,8 @@ router.post('/register', (req, res) => {
 		{
 			try {
 				req.body.complete = false
-				return res.send({ complete: req.body.complete })
-				//const task = await Task.create(req.body)
-				//return res.send({ task })
+				const task = await Task.create(req.body)
+				return res.send({ task })
 			}
 			catch (err) {
 				return res.status(500).send({ err: "Task register failed" })
