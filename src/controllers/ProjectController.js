@@ -51,7 +51,7 @@ router.put('/update/:id', (req, res) => {
 			return res.status(500).send({ error: "Project doesn't exists" })
 		}
 		else {
-			Project.updateOne({ _id: project._id }, req.body, (err, project) => { 
+			Project.updateOne({ _id: project._id }, req.body, (err) => { 
 				if (err) {
 					return res.status(500).send({ err: "Update failed" })
 				}
@@ -59,6 +59,17 @@ router.put('/update/:id', (req, res) => {
 					return res.send({ msg: "Success" })
 				}
 			})
+		}
+	})
+})
+
+router.delete('/destroy/:id', async (req, res) => {
+	Project.deleteOne({ _id: req.params.id }, (err) => {
+		if (err) {
+			return res.status(500).send({ error: "Delete failed" })
+		}
+		else {
+			return res.send({ msg: "Success" })
 		}
 	})
 })
