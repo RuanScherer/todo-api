@@ -13,13 +13,24 @@ router.get('/all', async (req, res) => {
 	}
 })
 
-router.get('/id/:id', (req, res) => {
-	const project = Project.findById(req.params.id, (err, project) => {
+router.get('/id/:id', async (req, res) => {
+	const project = await Project.findById(req.params.id, (err, project) => {
 		if (err) {
-			return res.status(500).send({ error: "Project not founda" })
+			return res.status(500).send({ error: "Project not found" })
 		}
 		else {
 			return res.send({project})
+		}
+	})
+})
+
+router.get('/name/:name', async (req, res) => {
+	const project = await Project.findOne({ name: req.params.name }, (err, project) => {
+		if (err) {
+			return res.status(500).send({ error: "Project not found" })
+		}
+		else {
+			return res.send({ project })
 		}
 	})
 })
