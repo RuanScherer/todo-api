@@ -10,3 +10,7 @@ const ProjectSchema = new mongoose.Schema({
 		type: String
 	}
 })
+
+const Project = mongoose.model('Project', ProjectSchema)
+
+module.exports = Project
