@@ -13,6 +13,17 @@ router.get('/all', async (req, res) => {
 	}
 })
 
+router.get('/id/:id', (req, res) => {
+	const project = Project.findById(req.params.id, (err, project) => {
+		if (err) {
+			return res.status(500).send({ error: "Project not founda" })
+		}
+		else {
+			return res.send({project})
+		}
+	})
+})
+
 router.post('/register', async (req, res) => {
 	try {
 		const project = await Project.create(req.body)
