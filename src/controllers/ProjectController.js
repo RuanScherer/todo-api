@@ -45,4 +45,22 @@ router.post('/register', async (req, res) => {
 	}
 })
 
+router.put('/update/:id', (req, res) => {
+	Project.findById(req.params.id, (err, project) => {
+		if (err) {
+			return res.status(500).send({ error: "Project doesn't exists" })
+		}
+		else {
+			Project.updateOne({ _id: project._id }, req.body, (err, project) => { 
+				if (err) {
+					return res.status(500).send({ err: "Update failed" })
+				}
+				else {
+					return res.send({ msg: "Success" })
+				}
+			})
+		}
+	})
+})
+
 module.exports = app => app.use('/project', router)
