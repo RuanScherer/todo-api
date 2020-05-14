@@ -73,4 +73,15 @@ router.put('/update/:id', (req, res) => {
 	})
 })
 
+router.delete('/destroy/:id', (req, res) => {
+	Task.deleteOne({ _id: req.params.id }, (err) => {
+		if (err) {
+			return res.status(500).send({ error: "Delete failed" })
+		}
+		else {
+			return res.send({ msg: "Success" })
+		}
+	})
+})
+
 module.exports = app => app.use('/task', router)
