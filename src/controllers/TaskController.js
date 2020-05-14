@@ -55,4 +55,22 @@ router.post('/register', (req, res) => {
 	})
 })
 
+router.put('/update/:id', (req, res) => {
+	Task.findById(req.params.id, (err, task) => {
+		if (err) {
+			return res.status(500).send({ error: "Task doesn't exists" })
+		}
+		else {
+			Task.updateOne({ _id: task._id }, req.body, (err) => { 
+				if (err) {
+					return res.status(500).send({ err: "Update failed" })
+				}
+				else {
+					return res.send({ msg: "Success" })
+				}
+			})
+		}
+	})
+})
+
 module.exports = app => app.use('/task', router)
