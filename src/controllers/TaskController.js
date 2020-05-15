@@ -36,6 +36,17 @@ router.get('/project/:id', async (req, res)=> {
 	})
 })
 
+router.get('/finished', async (req, res)=> {
+	Task.find({ complete: true }, (err, tasks) => {
+		if (err) {
+			return res.status(500).send({ err : "Tasks not found" })
+		}
+		else {
+			return res.send({ tasks })
+		}
+	})
+})
+
 router.get('/name/:name', async (req, res)=> {
 	Task.find({ name: req.params.name }, (err, tasks) => {
 		if (err) {
