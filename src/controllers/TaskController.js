@@ -106,24 +106,6 @@ router.put('/update/:id', (req, res) => {
 	})
 })
 
-router.put('/finish/:id', (req, res) => {
-	Task.findById(req.params.id, (err, task) => {
-		if (err) {
-			return res.status(500).send({ error: "Task doesn't exists" })
-		}
-		else {
-			Task.updateOne({ _id: task._id }, { complete: true}, (err) => {
-				if (err) {
-					return res.status(500).send({ err: "Operation failed" })
-				}
-				else {
-					return res.send({ msg: "Success" })
-				}
-			})
-		}
-	})
-})
-
 router.delete('/destroy/:id', (req, res) => {
 	Task.deleteOne({ _id: req.params.id }, (err) => {
 		if (err) {
