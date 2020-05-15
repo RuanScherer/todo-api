@@ -4,16 +4,6 @@ const Task = require('./../models/task')
 
 const router = express.Router()
 
-router.get('/all', async (req, res) => {
-	try {
-		const tasks = await Task.find({})
-		return res.send({ tasks })
-	}
-	catch (err) {
-		return res.status(500).send({ err : "Request failed" })
-	}
-})
-
 router.get('/id/:id', async (req, res)=> {
 	Task.findById(req.params.id, (err, task) => {
 		if (err) {
@@ -44,7 +34,7 @@ router.get('/project/:id/finished', async (req, res)=> {
 		else {
 			return res.send({ tasks })
 		}
-	})
+	}).sort('priority')
 })
 
 router.get('/project/:id/unfinished', async (req, res)=> {
@@ -55,18 +45,7 @@ router.get('/project/:id/unfinished', async (req, res)=> {
 		else {
 			return res.send({ tasks })
 		}
-	})
-})
-
-router.get('/name/:name', async (req, res)=> {
-	Task.find({ name: req.params.name }, (err, tasks) => {
-		if (err) {
-			return res.status(500).send({ err : "Empty" })
-		}
-		else {
-			return res.send({ tasks })
-		}
-	})
+	}).sort('priority')
 })
 
 router.post('/register', (req, res) => {
