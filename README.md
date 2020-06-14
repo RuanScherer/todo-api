@@ -4,7 +4,7 @@
 <p>Esta é uma simples API para gerenciar projetos e suas tarefas correspondentes baseada no modelo de to-do app.</p>
 
 ## Tecnologias utilizadas
-- HTML / CSS / JavaScript
+- JavaScript
 - [Node.js](https://nodejs.org/)
 - [Express.js](https://expressjs.com/pt-br/)
 - [Mongoose](https://mongoosejs.com/)
