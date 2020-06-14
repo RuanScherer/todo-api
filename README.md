@@ -23,7 +23,7 @@
 - O servidor estará disponível em `http://localhost:3000`.
 
 #### Via terminal
-- Abra o terminal e navegue até a pasta raíz de seu servidor PHP.
+- Abra o terminal e navegue até um diretório de sua escolha.
 - Execute o comando `$ git clone https://github.com/RuanScherer/todo-api.git` para clonar o repositório (é necessário possuir o [GIT](https://git-scm.com/) instalado).
 - Execute o comando `$ npm install` para instalar todas as dependências da aplicação.
 - Execute o comando `$ npm start` para iniciar o servidor.
